@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from "react-native";
 
-const LoginScreen = () => {
+const LoginScreen = ({
+  navigation
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,12 +14,30 @@ const LoginScreen = () => {
     // 4. Display error message if unsuccessful
   };
 
+  const handleForgotPassword = () => {
+    // TODO: Implement forgot password logic here
+    // 1. Navigate to forgot password screen
+    navigation.navigate("ForgotPassword");
+  };
+
+  const handleSignUp = () => {
+    // TODO: Implement sign up logic here
+    // 1. Navigate to sign up screen
+    navigation.navigate("SignUp");
+  };
+
   return <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
       <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" />
       <TextInput style={styles.input} placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry />
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleForgotPassword}>
+        <Text style={styles.forgotPassword}>Forgot Password?</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={handleSignUp}>
+        <Text style={styles.signUp}>Don't have an account? Sign up</Text>
       </TouchableOpacity>
       <Text style={styles.instructions}>
         Enter your email and password to login.
@@ -61,6 +81,18 @@ const styles = StyleSheet.create({
   instructions: {
     marginTop: 20,
     color: "#999",
+    fontSize: 16,
+    textAlign: "center"
+  },
+  forgotPassword: {
+    marginTop: 10,
+    color: "#007bff",
+    fontSize: 16,
+    textAlign: "center"
+  },
+  signUp: {
+    marginTop: 20,
+    color: "#007bff",
     fontSize: 16,
     textAlign: "center"
   }
