@@ -8,6 +8,30 @@ function api_docs_schema_retrieve(payload) {
     params: { lang: payload.lang }
   })
 }
+function api_v1_crftoken_list(payload) {
+  return testingravindernewjAPI.get(`/api/v1/crftoken/`)
+}
+function api_v1_crftoken_create(payload) {
+  return testingravindernewjAPI.post(`/api/v1/crftoken/`, payload.data)
+}
+function api_v1_crftoken_retrieve(payload) {
+  return testingravindernewjAPI.get(`/api/v1/crftoken/${payload.id}/`)
+}
+function api_v1_crftoken_update(payload) {
+  return testingravindernewjAPI.put(
+    `/api/v1/crftoken/${payload.id}/`,
+    payload.data
+  )
+}
+function api_v1_crftoken_partial_update(payload) {
+  return testingravindernewjAPI.patch(
+    `/api/v1/crftoken/${payload.id}/`,
+    payload.data
+  )
+}
+function api_v1_crftoken_destroy(payload) {
+  return testingravindernewjAPI.delete(`/api/v1/crftoken/${payload.id}/`)
+}
 function api_v1_login_create(payload) {
   return testingravindernewjAPI.post(`/api/v1/login/`, payload.data)
 }
@@ -58,6 +82,12 @@ function rest_auth_user_partial_update(payload) {
 }
 export const apiService = {
   api_docs_schema_retrieve,
+  api_v1_crftoken_list,
+  api_v1_crftoken_create,
+  api_v1_crftoken_retrieve,
+  api_v1_crftoken_update,
+  api_v1_crftoken_partial_update,
+  api_v1_crftoken_destroy,
   api_v1_login_create,
   api_v1_signup_create,
   rest_auth_login_create,
