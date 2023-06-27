@@ -1,9 +1,19 @@
+import { useSelector } from "react-redux";
+import { loginRequest } from "../../modules/login/auth/index.js";
+import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 import { StyleSheet, View, Text, TextInput, TouchableOpacity } from "react-native";
 
 const LoginScreen = ({
   navigation
 }) => {
+  const {
+    entities: user
+  } = useSelector(state => state.user);
+  const {
+    entities: pass
+  } = useSelector(state => state.pass);
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,12 +22,6 @@ const LoginScreen = ({
     // 2. Make API call to authenticate user
     // 3. Navigate to home screen if successful
     // 4. Display error message if unsuccessful
-  };
-
-  const handleForgotPassword = () => {
-    // TODO: Implement forgot password logic here
-    // 1. Navigate to forgot password screen
-    navigation.navigate("ForgotPassword");
   };
 
   const handleSignUp = () => {
@@ -33,7 +37,7 @@ const LoginScreen = ({
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={handleForgotPassword}>
+      <TouchableOpacity onPress={onSubmit}>
         <Text style={styles.forgotPassword}>Forgot Password?</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleSignUp}>
@@ -43,6 +47,13 @@ const LoginScreen = ({
         Enter your email and password to login.
       </Text>
     </View>;
+
+  const onSubmit = () => {
+    dispatch(loginRequest({
+      pass,
+      user
+    }));
+  };
 };
 
 const styles = StyleSheet.create({
