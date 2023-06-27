@@ -14,6 +14,7 @@
   "dependencies": {
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
     "@babel/polyfill": "^7.12.1",
+    "@modules/app-menu": "file:./modules/app-menu/",
     "@modules/login": "file:./modules/login/",
     "@react-native-async-storage/async-storage": "1.17.9",
     "@react-native-masked-view/masked-view": "^0.2.9",
